@@ -13,7 +13,6 @@ function App() {
   // lizardSize should be a number that starts out as 10
   // alienSize should be a number that starts out as 10
   // traffic is complicated. It should be an array of strings that starts out as ['car', 'truck']
-  console.log({ alienSize, lizardSize });
   return (
     <div className="App">
       <div className="fight">
