@@ -4,15 +4,33 @@ import VehicleList from './VehicleList';
 import TrafficLight from './TrafficLight';
 
 function App() {
-
-  const [alienSize, setAlienSize] = useState(1);
-  const [lizardSize, setLizardSize] = useState(1);
-  // const alienWidth = {alienSize * 10};
   // track the following state with a few useState hooks:
-  // lightColor should be a string that starts out as 'red'
-  // lizardSize should be a number that starts out as 10
+
   // alienSize should be a number that starts out as 10
+  const [alienSize, setAlienSize] = useState(1);
+  // lizardSize should be a number that starts out as 10
+  const [lizardSize, setLizardSize] = useState(1);
+  // lightColor should be a string that starts out as 'red'
+  const [lightColor, setLightColor] = useState(`red`);
   // traffic is complicated. It should be an array of strings that starts out as ['car', 'truck']
+  const [vehicleArr, setVehicleArr] = useState([`car`, `truck`]);
+
+  function handleAddCar(){
+    setVehicleArr([...vehicleArr, `car`]);
+  }
+
+  function handleAddBus(){
+    setVehicleArr([...vehicleArr, `bus`]);
+  }
+
+  function handleAddTruck(){
+    setVehicleArr([...vehicleArr, `truck`]);
+  }
+
+  function handleAddMotorcycle(){
+    setVehicleArr([...vehicleArr, `motorcycle`]);
+  }
+
   return (
     <div className="App">
       <div className="fight">
@@ -40,32 +58,35 @@ function App() {
           </div>
         </div>
       </div>
-      <TrafficLight />
-      {/* <TrafficLight color={lightColor} /> */}
+      <TrafficLight color={lightColor} />
       <div className="buttons">
         {/* when you click this button, the color of the light in state should be set to 'red' */}
-        <button>Red</button>
+        <button onClick={() => {setLightColor(`red`);}}>Red</button>
         {/* when you click this button, the color of the light in state should be set to 'yellow' */}
-        <button>Yellow</button>
+        <button onClick={() => {
+          setLightColor(`yellow`);
+        }}>Yellow</button>
         {/* when you click this button, the color of the light in state should be set to 'green' */}
-        <button>Green</button>
+        <button onClick={() => {
+          setLightColor(`green`);
+        }}>Green</button>
       </div>
       {/* 
       the VehicleList component takes in one prop: vehicles.
       This prop should be an array of strings like ['car', 'truck', 'truck', 'car', 'bus'].
       Do you have something like that in state that you could pass as a vehicles prop? 
       */}
-      <VehicleList />
+      <VehicleList vehicleArr={vehicleArr} />
       <div className='buttons'>
         {/* This part is weird */}
         {/* On click, you should set the traffic in state to be a copy of the same array that's already in state, but immutably add a 'car' to the end */}
-        <button>Car</button>
+        <button onClick={handleAddCar}>Car</button>
         {/* On click, you should set the traffic in state to be a copy of the same array that's already in state, but immutably add a 'bus' to the end */}
-        <button>Bus</button>
+        <button onClick={handleAddBus}>Bus</button>
         {/* On click, you should set the traffic in state to be a copy of the same array that's already in state, but immutably add a 'truck' to the end */}
-        <button>Truck</button>
+        <button onClick={handleAddTruck}>Truck</button>
         {/* On click, you should set the traffic in state to be a copy of the same array that's already in state, but immutably add a 'motorcycle' to the end */}
-        <button>Motorcycle</button>
+        <button onClick={handleAddMotorcycle}>Motorcycle</button>
       </div>
 
     </div>
